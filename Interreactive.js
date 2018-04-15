@@ -6,15 +6,17 @@ window.addEventListener("load", function () {
 
 const Mapping = {
     Renderer: "../Renderer.js",
-    Module: "../Module.js"
+    Module: "../Module.js",
+    Files: "files.js"
 }
 
 class Interreactive {
     constructor(modules) {
         this.Modules = modules;
 
-        Util.FetchModule("Renderer", Mapping.Renderer);
-        Util.FetchModule("Module", Mapping.Module);
+        Util.FetchScript(Mapping.Files);
+        Util.FetchClass("Renderer", Mapping.Renderer);
+        Util.FetchClass("Module", Mapping.Module);
     }
 
     Render() {

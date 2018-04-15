@@ -1,16 +1,19 @@
 class Util {
-    static FetchModule(module, url) {
-        Util.Fetch(url, function (response) {
+    static FetchClass(module, url) {
+        Util.Fetch(url, function (responseBody) {
             let scriptToEval = "";
-            scriptToEval += response;
+            scriptToEval += responseBody;
             scriptToEval += "\nwindow['" + module + "'] = " + module + ";";
 
             eval(scriptToEval);
         });
     }
 
-    static FetchTemplate(template, url, callback) {
-
+    static FetchScript(url) {
+        Util.Fetch(url, function(responseBody) {
+            //console.log(responseBody);
+            eval(responseBody);
+        });
     }
 
     static Fetch(url, callback) {
