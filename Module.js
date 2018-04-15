@@ -1,10 +1,11 @@
 class Module {
     constructor() {
-        this.Template = "";
-        this.Model = {}
+        this.Template = null;
+        this.Model = null;
     }
 
-    Render() {
-        return Renderer.Render(this.Template, this.Model);
+    async Render() {
+        let template = await FileManager.GetTemplate(this.Template);
+        return Renderer.Render(template, this.Model);
     }
 }

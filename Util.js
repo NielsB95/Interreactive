@@ -1,23 +1,30 @@
 class Util {
-    static FetchClass(module, url) {
-        Util.Fetch(url, function (responseBody) {
-            let scriptToEval = "";
-            scriptToEval += responseBody;
-            scriptToEval += "\nwindow['" + module + "'] = " + module + ";";
+    static async FetchClass(module, url, callback) {
+        let responseBody = await Util.Fetch(url);
+        let scriptToEval = "";
+        scriptToEval += responseBody;
+        scriptToEval += "\nwindow['" + module + "'] = " + module + ";";
+        eval(scriptToEval);
 
-            eval(scriptToEval);
-        });
+        if (!!callback)
+            callback(responseBody);
+
+        return window[module];
+    }
+
+    static async FetchTemplate(url){
+        let html = await Util.Fetch(url);
+        return html;
     }
 
     static FetchScript(url) {
-        Util.Fetch(url, function(responseBody) {
-            //console.log(responseBody);
+        return Util.Fetch(url, function (responseBody) {
             eval(responseBody);
         });
     }
 
-    static Fetch(url, callback) {
-        fetch(url)
+    static async Fetch(url, callback) {
+        return await (await fetch(url)
             .then(response => {
                 // console.log('response', response);
                 // console.log('response.status:', response.status);
@@ -26,11 +33,10 @@ class Util {
                 return response.text();
             })
             .then(responseBody => {
-                // console.log(responseBody);
-                callback(responseBody);
+                return responseBody;
             })
             .catch(error => {
                 console.error("Something went wrong!", error);
-            });
+            }));
     }
 }
