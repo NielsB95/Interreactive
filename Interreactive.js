@@ -5,10 +5,10 @@ window.addEventListener("load", function () {
 });
 
 const Mapping = {
-    Renderer: "../Renderer.js",
-    Module: "../Module.js",
+    Renderer: "../CoreModules/Renderer.js",
+    Module: "../CoreModules/Module.js",
     Files: "files.js",
-    FileManager: "../FileManager.js"
+    FileManager: "../CoreModules/FileManager.js"
 }
 
 class Interreactive {
