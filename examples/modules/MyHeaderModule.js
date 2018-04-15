@@ -1,4 +1,4 @@
-class MyHeaderModule extends Module{
+class MyHeader extends Module{
     constructor() {
         super();
         this.Template = "templates/MyHeader.html";

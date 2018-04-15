@@ -1,4 +1,4 @@
 window.Files = {
-    MyHeaderModule: "modules/MyHeaderModule.js",
+    MyHeader: "modules/MyHeaderModule.js",
     MyBody: "modules/MyBodyModule.js"
 }
