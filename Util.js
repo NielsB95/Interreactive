@@ -1,5 +1,19 @@
 class Util {
-    static FetchModule(module, url, callback) {
+    static FetchModule(module, url) {
+        Util.Fetch(url, function (response) {
+            let scriptToEval = "";
+            scriptToEval += response;
+            scriptToEval += "\nwindow['" + module + "'] = " + module + ";";
+
+            eval(scriptToEval);
+        });
+    }
+
+    static FetchTemplate(template, url, callback) {
+
+    }
+
+    static Fetch(url, callback) {
         fetch(url)
             .then(response => {
                 // console.log('response', response);
@@ -9,10 +23,8 @@ class Util {
                 return response.text();
             })
             .then(responseBody => {
-                let toEval = responseBody + "\nwindow['" + module + "'] = " + module + ";";
-                // console.log('responseBody:', responseBody);
-                // console.log(toEval);
-                eval(toEval);
+                // console.log(responseBody);
+                callback(responseBody);
             })
             .catch(error => {
                 console.error("Something went wrong!", error);

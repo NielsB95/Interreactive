@@ -18,7 +18,7 @@ class Interreactive {
     }
 
     Render() {
-        for(let module of this.Modules){
+        for (let module of this.Modules) {
             let moduleName = module.getAttribute("module");
             console.log(moduleName);
             console.log(module);
