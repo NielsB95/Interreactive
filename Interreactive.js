@@ -19,7 +19,7 @@ class Interreactive {
 
     async Render() {
         if (!this.CoreModulesLoaded) {
-            await this.loadModules();
+            await this.LoadCoreModules();
             this.CoreModulesLoaded = true;
         }
 
@@ -36,7 +36,7 @@ class Interreactive {
         }
     }
 
-    async loadModules() {
+    async LoadCoreModules() {
         await Util.FetchClass("FileManager", Mapping.FileManager);
         await Util.FetchClass("Renderer", Mapping.Renderer);
         await Util.FetchClass("Module", Mapping.Module);
